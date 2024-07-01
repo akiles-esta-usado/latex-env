@@ -33,6 +33,7 @@ apt install -y  --no-install-recommends \
 	less \
 	parallel \
 	htop \
+	dbus-x11 \
 	ghostscript \
 	imagemagick \
 	imagemagick-6-common \
