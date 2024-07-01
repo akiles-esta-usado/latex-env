@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath} % for the equation* environment
+
+\begin{document}
+
+\section*{Notes for My Paper}
+
+Don't forget to include examples of topicalization.
+They look like this:
+
+\subsection*{How to handle topicalization}
+
+I'll just assume a tree structure
+
+
+\subsection*{Mood}
+
+Mood changes when there is a topic, as well as when
+there is WH-movement.  \emph{Irrealis} is the mood when
+there is a non-subject topic or WH-phrase in Comp.
+\emph{Realis} is the mood when there is a subject topic
+or WH-phrase.
+
+The well known Pythagorean theorem \(x^2 + y^2 = z^2\) was
+proved to be invalid for other exponents.
+Meaning the next equation has no integer solutions:
+
+\[ x^n + y^n = z^n \]
+
+\section{Another example}
+
+\noindent Standard \LaTeX{} practice is to write inline math by enclosing it between \verb|\(...\)|:
+
+\begin{quote}
+    In physics, the mass-energy equivalence is stated
+    by the equation \(E=mc^2\), discovered in 1905 by Albert Einstein.
+\end{quote}
+
+\begin{quote}
+    In physics, the mass-energy equivalence is stated
+    % by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+    by the equation \(E=mc^2\), discovered in 1905 by Albert Einstein.
+\end{quote}
+
+\noindent Or, you can use \verb|\begin{math}...\end{math}|:
+
+\begin{quote}
+    In physics, the mass-energy equivalence is stated
+    by the equation \begin{math}E=mc^2\end{math}, discovered in 1905 by Albert Einstein.
+\end{quote}
+
+
+\section{Another Example 2}
+
+The mass-energy equivalence is described by the famous equation
+
+\[E=mc^2\]
+
+discovered in 1905 by Albert Einstein.
+In natural units (\(c\) = 1), the formula expresses the identity
+
+\begin{equation}
+    E=m
+\end{equation}
+
+
+\section*{Example with amsmath environment}
+
+
+This is a simple math expression \(\sqrt{x^2+1}\) inside text.
+And this is also the same:
+\begin{math}
+    \sqrt{x^2+1}
+\end{math}
+but by using another command.
+
+This is a simple math expression without numbering
+\[\sqrt{x^2+1}\]
+separated from text.
+
+This is also the same:
+\begin{displaymath}
+    \sqrt{x^2+1}
+\end{displaymath}
+
+\ldots and this:
+\begin{equation*}
+    \sqrt{x^2+1}
+\end{equation*}
+
+\end{document}
