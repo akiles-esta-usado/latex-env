@@ -13,50 +13,36 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=en_US.UTF-8 \
     TOOLS=/opt
 
-USER root
-
-
-#######################################################################
-# Setup base image
-#######################################################################
-# FROM common as base
-
-# RUN --mount=type=bind,source=scripts/base,target=/scripts/base \
-#     bash /scripts/base/install.sh \
-#     && bash /scripts/base/python_packages.sh \
-#     && bash /scripts/base/install_fwup.sh
-
-
-#######################################################################
-# Builder image (Has all iic dependencies)
-#######################################################################
-# FROM common as builder
-
-# RUN echo "Hello from builder"
+RUN --mount=type=bind,source=scripts/base,target=/scripts/base \
+    bash /scripts/base/install.sh
 
 
 #######################################################################
 # Final output container
 #######################################################################
-FROM ${BASE_IMAGE} as common
+FROM common as latex-env
 ARG CONTAINER_TAG=unknown
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Europe/Vienna \
     LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
-    TOOLS=/opt
+    TOOLS=/opt \
+    SHELL=/bin/bash
 
-USER root
+RUN --mount=type=bind,source=scripts/latex-env/install,target=/scripts/latex-env/install \
+    bash /scripts/latex-env/install/install.sh
 
-RUN --mount=type=bind,source=scripts/base,target=/scripts/base \
-    bash /scripts/base/install.sh
+RUN --mount=type=bind,source=scripts/latex-env/config,target=/scripts/latex-env/config \
+    bash /scripts/latex-env/config/latex-patches.sh
 
 RUN useradd -m dev \
     && echo "dev ALL=(ALL:ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/dev
 USER dev
 
-COPY --chmod=755 scripts/latex-env/entrypoint.sh /entrypoint.sh
+COPY --chmod=755 scripts/latex-env/config/.bashrc /home/dev/.bashrc
+COPY --chmod=755 scripts/latex-env/config/.bashrc /root/.bashrc
+COPY --chmod=755 scripts/latex-env/config/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 WORKDIR /home/dev

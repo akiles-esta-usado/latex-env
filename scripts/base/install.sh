@@ -40,18 +40,18 @@ apt install -y  --no-install-recommends \
 	biber \
 	latexmk \
 	chktex \
-	lacheck \
-	zathura \
-	texlive \
-	texlive-latex-extra \
-	texlive-extra-utils \
-	texlive-fonts-extra \
-	texlive-bibtex-extra \
-	texlive-lang-spanish \
-	texlive-science
+	lacheck
+	# zathura \
+	# texlive \
+	# texlive-latex-extra \
+	# texlive-extra-utils \
+	# texlive-fonts-extra \
+	# texlive-bibtex-extra \
+	# texlive-lang-spanish \
+	# texlive-science
 
-curl -L http://cpanmin.us | perl - --self-upgrade
-cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
+# curl -L http://cpanmin.us | perl - --self-upgrade
+# cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
 
 echo "[INFO] Cleaning up caches"
 rm -rf /tmp/*
