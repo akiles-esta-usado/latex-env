@@ -40,15 +40,9 @@ apt install -y  --no-install-recommends \
 	biber \
 	latexmk \
 	chktex \
-	lacheck
-	# zathura \
-	# texlive \
-	# texlive-latex-extra \
-	# texlive-extra-utils \
-	# texlive-fonts-extra \
-	# texlive-bibtex-extra \
-	# texlive-lang-spanish \
-	# texlive-science
+	lacheck \
+	inkscape \
+	openjdk-8-jre-headless
 
 # curl -L http://cpanmin.us | perl - --self-upgrade
 # cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
@@ -60,3 +54,8 @@ apt -y clean
 rm -rf /var/lib/apt/lists/*
 
 update-alternatives --install /usr/bin/python python /usr/bin/python3 0
+
+pip install uv
+
+uv pip install --system --strict --compile-bytecode --no-cache \
+	Pygments

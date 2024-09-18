@@ -38,11 +38,13 @@ RUN --mount=type=bind,source=scripts/latex-env/config,target=/scripts/latex-env/
 
 RUN useradd -m dev \
     && echo "dev ALL=(ALL:ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/dev
-USER dev
-
-COPY --chmod=755 scripts/latex-env/config/.bashrc /home/dev/.bashrc
-COPY --chmod=755 scripts/latex-env/config/.bashrc /root/.bashrc
+    
+RUN --mount=type=bind,source=scripts/latex-env/config,target=/scripts/latex-env/config \
+    bash -c 'cat scripts/latex-env/config/.bashrc' >> /home/dev/.bashrc && \
+    bash -c 'cat scripts/latex-env/config/.bashrc' >> /root/.bashrc
+    
 COPY --chmod=755 scripts/latex-env/config/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-
+    
+USER dev
 WORKDIR /home/dev
