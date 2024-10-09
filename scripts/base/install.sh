@@ -58,4 +58,6 @@ update-alternatives --install /usr/bin/python python /usr/bin/python3 0
 pip install uv
 
 uv pip install --system --strict --compile-bytecode --no-cache \
-	Pygments
+	Pygments \
+    "numpy<2.0" \
+    pandas

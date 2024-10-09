@@ -1,0 +1,182 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	// https://henrikgerdes.me/articles/2022-01-vscode-latex
+	"settings": {
+		"scm.defaultViewMode": "tree",
+		// Indentation
+		"editor.tabSize": 4,
+		"editor.detectIndentation": false,
+		"editor.insertSpaces": true,
+		//
+		"output.smartScroll.enabled": true,
+		"editor.smoothScrolling": true,
+		"editor.wordWrap": "on",
+		"editor.wordWrapColumn": 80,
+		"editor.fontLigatures": true,
+		"editor.renderWhitespace": "boundary",
+		"editor.suggestSelection": "recentlyUsedByPrefix",
+		"files.associations": {
+			"*.tex": "latex",
+			"*.sty": "latex",
+			"*.glstex": "latex"
+		},
+		"[latex]": {
+			"editor.defaultFormatter": "James-Yu.latex-workshop",
+			"editor.formatOnSave": true
+		},
+		"[tex]": {
+			"editor.defaultFormatter": "James-Yu.latex-workshop",
+			"editor.formatOnSave": true
+		},
+		"files.trimTrailingWhitespace": true,
+		"latex-workshop.latex.bibDirs": [
+			"bibliography"
+		],
+		"latex-workshop.formatting.latex": "latexindent",
+		"latex-workshop.view.pdf.viewer": "tab",
+		"latex-workshop.intellisense.package.enabled": true,
+		"latex-workshop.linting.chktex.enabled": true,
+		"latex-workshop.linting.lacheck.enabled": true,
+		"latex-workshop.latex.recipe.default": "lastUsed",
+		// "latex-workshop.latex.outDir": "/tmp/build", // Not always work
+		// "latex-workshop.latex.autoClean.run": "onFailed",
+		"latex-workshop.latex.autoBuild.run": "never",
+		"latex-workshop.synctex.afterBuild.enabled": true,
+		"latex-workshop.intellisense.citation.backend": "biblatex",
+		"latex-workshop.view.outline.sync.viewer": true,
+		"latex-workshop.texdoc.args": [
+			"--view",
+			"--shell-escape"
+		],
+		"latex-workshop.latex.recipes": [
+			{
+				"name": "latexmk",
+				"tools": [
+					"latexmk"
+				]
+			},
+			{
+				"name": "pdflatex",
+				"tools": [
+					"pdflatex"
+				]
+			},
+			{
+				"name": "latexmk -> biber -> latexmk * 2",
+				"tools": [
+					"latexmk",
+					"biber",
+					"latexmk",
+					"latexmk"
+				]
+			},
+			{
+				"name": "pdflatex -> biber -> pdflatex * 2",
+				"tools": [
+					"pdflatex",
+					"biber",
+					"pdflatex",
+					"pdflatex"
+				]
+			},
+			{
+				"name": "pdflatex, makeglossaries, biber, pdflatex (x2)",
+				"tools": [
+					"pdflatex",
+					"makeglossaries",
+					"biber",
+					"pdflatex",
+					"pdflatex"
+				]
+			},
+			{
+				"name": "fast: makeglossaries, biber, pdflatex",
+				"tools": [
+					"makeglossaries",
+					"biber",
+					"pdflatex"
+				]
+			},
+		],
+		"latex-workshop.latex.tools": [
+			{
+				"name": "latexmk",
+				"command": "latexmk",
+				"args": [
+					"--shell-escape",
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-file-line-error",
+					"-pdf",
+					"-outdir=%OUTDIR%",
+					"%DOC%"
+				],
+				"env": {}
+			},
+			{
+				"name": "pdflatex",
+				"command": "pdflatex",
+				"args": [
+					"--shell-escape",
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-file-line-error",
+					"-output-directory=%OUTDIR%",
+					"%DOC%"
+				],
+				"env": {}
+			},
+			{
+				"name": "bibtex",
+				"command": "bibtex",
+				"args": [
+					"-output-directory=%OUTDIR%",
+					"%DOCFILE%"
+				],
+				"env": {}
+			},
+			{
+				"name": "biber",
+				"command": "biber",
+				"args": [
+					"--output-directory=%OUTDIR%",
+					"%DOCFILE%"
+				]
+			},
+			{
+				"name": "makeglossaries",
+				"command": "makeglossaries",
+				"args": [
+					// "-d %OUTDIR%",
+					"%DOCFILE%"
+				]
+			}
+		],
+		// https://valentjn.github.io/ltex/settings.html
+		"ltex.enabled": [
+			"latex",
+			"markdown"
+		],
+		"ltex.dictionary": {
+			"es": [
+				"Dummy0",
+				"Dummy1",
+				"Dummy2",
+				"Dummy3"
+			]
+		},
+		"ltex.language": "en-US",
+		"ltex.java.initialHeapSize": 256,
+		"ltex.java.maximumHeapSize": 1024,
+		// "ltex.configurationTarget": {
+		//   "dictionary": "userExternalFile",
+		//   "disabledRules": "userExternalFile",
+		//   "hiddenFalsePositives": "userExternalFile"
+		// }
+		// https://github.com/MBerkayHamurcu/VSCTeX/blob/main/.devcontainer/devcontainer.json
+	}
+}
